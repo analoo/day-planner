@@ -24,16 +24,20 @@ updateTime();
 
 // loop for showing all data in browser
 
+$("#currentDay").text(currentDate);
+
 for (let i = 0; i< plannerData.length ; i++){
     var trHTML = $("<tr></tr>");
+    var imageSrc = "Assets/save.png"
     trHTML.addClass("row");
     $(".container").append(trHTML);
     var timeDisplay = $("<td>"+plannerData[i].display +"</td>")
     var activityDisplay = $("<td><textarea>"+plannerData[i].activity +"</textarea></td>")
-    var saveDisplay = $("<td> O </td>")
+    var saveDisplay = $("<td><img src="+imageSrc+"></td>")
     timeDisplay.addClass("hour");
     activityDisplay.addClass("description");
     saveDisplay.addClass("saveBtn");
+    saveDisplay.attr("id", "li"+i)
 
     if(plannerData[i].time == currentTime){
         activityDisplay.addClass("present");
@@ -47,13 +51,14 @@ for (let i = 0; i< plannerData.length ; i++){
         activityDisplay.addClass("past");
     }
 
-
-
     $(trHTML).append(timeDisplay, activityDisplay, saveDisplay);
 
-}
+};
 
+$(".saveBtn").on("click", function(){
+    let rowIndex = this.id.split("li")[1];
+    console.log($(this).parent())
 
-
-;
+    
+})
 
