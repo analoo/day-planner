@@ -12,20 +12,25 @@ var plannerData = [
 ]
 
 
-
-
 // loop for showing all data in browser
 
 for (let i = 0; i< plannerData.length ; i++){
-    var trHTML = $("<tr></tr>")
+    var trHTML = $("<tr></tr>");
+    trHTML.addClass("row");
     $(".container").append(trHTML);
     var timeDisplay = $("<td>"+plannerData[i].display +"</td>")
     var activityDisplay = $("<td>"+plannerData[i].activity +"</td>")
-    var saveDisplay = $("<td><button>Save</button></td>")
-
+    var saveDisplay = $("<td> O </td>")
+    timeDisplay.addClass("hour");
+    activityDisplay.addClass("description");
+    saveDisplay.addClass("saveBtn");
     $(trHTML).append(timeDisplay, activityDisplay, saveDisplay);
 
 }
+
+
+
+
 
 
 
