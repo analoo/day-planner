@@ -11,7 +11,7 @@ var plannerData = [
    {time: 17, display: "5PM", activity: "String of text for five"},
 ]
 
-
+var currentTime = 11;
 // loop for showing all data in browser
 
 for (let i = 0; i< plannerData.length ; i++){
@@ -24,9 +24,26 @@ for (let i = 0; i< plannerData.length ; i++){
     timeDisplay.addClass("hour");
     activityDisplay.addClass("description");
     saveDisplay.addClass("saveBtn");
+
+    if(plannerData[i].time == currentTime){
+        activityDisplay.addClass("present");
+    }
+
+    else if(plannerData[i].time > currentTime){
+        activityDisplay.addClass("future");
+    }
+
+    else if(plannerData[i].time < currentTime){
+        activityDisplay.addClass("past");
+    }
+
+
+
     $(trHTML).append(timeDisplay, activityDisplay, saveDisplay);
 
 }
+
+
 
 
 
