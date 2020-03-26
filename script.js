@@ -11,7 +11,17 @@ var plannerData = [
    {time: 17, display: "5PM", activity: "String of text for five"},
 ]
 
-var currentTime = 11;
+// Function that updates the time every second
+var currentTime;
+var currentDate;
+
+function updateTime() {
+    currentTime = moment().format("H");
+    currentDate = moment().format("dddd, MMMM Do");
+}
+
+updateTime();
+
 // loop for showing all data in browser
 
 for (let i = 0; i< plannerData.length ; i++){
@@ -19,7 +29,7 @@ for (let i = 0; i< plannerData.length ; i++){
     trHTML.addClass("row");
     $(".container").append(trHTML);
     var timeDisplay = $("<td>"+plannerData[i].display +"</td>")
-    var activityDisplay = $("<td>"+plannerData[i].activity +"</td>")
+    var activityDisplay = $("<td><textarea>"+plannerData[i].activity +"</textarea></td>")
     var saveDisplay = $("<td> O </td>")
     timeDisplay.addClass("hour");
     activityDisplay.addClass("description");
@@ -45,14 +55,5 @@ for (let i = 0; i< plannerData.length ; i++){
 
 
 
+;
 
-
-
-
-
-
-
-
-
-
-console.log("is this thing on?")
