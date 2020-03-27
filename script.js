@@ -1,28 +1,41 @@
 
-var plannerData = [
-    { time: 9, display: "9AM", activity: "String of text for nine" },
-    { time: 10, display: "10AM", activity: "String of text for ten" },
-    { time: 11, display: "11AM", activity: "String of text for eleven" },
-    { time: 12, display: "12PM", activity: "String of text for twelve" },
-    { time: 13, display: "1PM", activity: "String of text for one" },
-    { time: 14, display: "2PM", activity: "String of text for two" },
-    { time: 15, display: "3PM", activity: "String of text for three" },
-    { time: 16, display: "4PM", activity: "String of text for four" },
-    { time: 17, display: "5PM", activity: "String of text for five" },
-]
-
-// Function that updates the time every second
+var plannerData = [];
 var currentTime;
 var currentDate;
+
+startPlanner();
+
+function startPlanner(){
+    updateTime();
+    if (JSON.parse(localStorage.getItem("pd-AMF")) == null) {
+        plannerData = [
+        { time: 9, display: "9AM", activity: "" },
+        { time: 10, display: "10AM", activity: "" },
+        { time: 11, display: "11AM", activity: "" },
+        { time: 12, display: "12PM", activity: "" },
+        { time: 13, display: "1PM", activity: "" },
+        { time: 14, display: "2PM", activity: "" },
+        { time: 15, display: "3PM", activity: "" },
+        { time: 16, display: "4PM", activity: "" },
+        { time: 17, display: "5PM", activity: "" },
+        ]
+        localStorage.setItem("pd-AMF", JSON.stringify(plannerData));
+    }
+
+    else {
+        plannerData = JSON.parse(localStorage.getItem("pd-AMF"))
+    }
+    renderPlannerData();
+
+}
+
+// Function that updates the time every second
+
 
 function updateTime() {
     currentTime = moment().format("H");
     currentDate = moment().format("dddd, MMMM Do");
 }
-
-updateTime();
-renderPlannerData();
-
 
 // loop for showing all data in browser
 
@@ -70,7 +83,8 @@ $(".saveBtn").on("click", function () {
     var indNoLi = index.split("li")[1];
     var newDescValue = $("#" + index).val();
     plannerData[indNoLi].activity = newDescValue;
+    localStorage.setItem("pd-AMF", JSON.stringify(plannerData));
     renderPlannerData();
 
-
 })
+
