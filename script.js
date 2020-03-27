@@ -26,6 +26,7 @@ function startPlanner(){
         plannerData = JSON.parse(localStorage.getItem("pd-AMF"))
     }
     renderPlannerData();
+    setInterval(updateTime(),1000)
 
 }
 
