@@ -2,10 +2,10 @@
 
 ## Summary
 
-This website generates a 60 seconds addition quiz for users conditioning their brain to become mathematicians. As the user answers questions, a new one appears. When the user is wrong, 5 seconds are deducted from the timer. Once the timer reaches 0, the quiz ends and the user is prompted to enter their name or initials to be added to the leaderboard. 
+This website is a simple work day planner application that allows a user to enter events for each hour of the day (9am-5pm). Information added to the planner and saved by the user is stored locally and retrieved when the webpage is reloaded. The page uses Moment.js to retrieve current time and date information so that planner will highligtht current hour in red, previous hours in grey and future hours in green.
 
 ## Site Picture
-![Site](images/1-homepage.png)
+![Site](./Assets/planner.png)
 
 
 ## Technologies Used
@@ -17,11 +17,27 @@ This website generates a 60 seconds addition quiz for users conditioning their b
 
 ## Code Snippet
 
-Notes about code stored
+The save activity function is highlighted below because it was an "AHA" moment about how data elements can be used to create references to id's without being forced to give multiple elements the same class value.
 
 
-```Code snippet
-Placeholder for code
+```
+function saveActivity() {
+    // pulls data id value from save button
+    var dataID = $(this).data("id");
+    // turns value into integer value, matching to desired index
+    var index = dataID.split("li")[1];
+    // extracts the value of the activity description
+    var newDescValue = $("#" + dataID).val();
+    // and assigns it back to the planner data
+    plannerData[index].activity = newDescValue;
+    // this is then stored locally
+    localStorage.setItem("pd-AMF", JSON.stringify(plannerData));
+    // the rendered HTML is cleared
+    $(".container").empty();
+    // and the renderPlannerData function is reran
+    renderPlannerData();
+
+}
 ```
 
 ## Author Links
